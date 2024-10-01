@@ -44,6 +44,7 @@ namespace W6_assignment_template.Data
                 if (existingCharacter is Player player && character is Player updatedPlayer)
                 {
                     player.Gold = updatedPlayer.Gold;  // Specific to Player
+                    player.Equipment = updatedPlayer.Equipment;
                 }
                 if (existingCharacter is Goblin goblin && character is Goblin updatedGoblin)
                 {
@@ -67,7 +68,7 @@ namespace W6_assignment_template.Data
         private void SaveData()
         {
             var jsonData = JsonSerializer.Serialize(Characters, options);
-            File.WriteAllText("Files/input.json", jsonData);
+            File.WriteAllText("Files/output.json", jsonData);
         }
     }
 }

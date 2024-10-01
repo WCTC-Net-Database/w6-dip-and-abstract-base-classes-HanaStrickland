@@ -1,11 +1,11 @@
-﻿[
+[
   {
     "$type": "W6_assignment_template.Models.Player",
     "Name": "Brave Sir Robin",
     "Type": "Fighter",
     "Level": 1,
     "HP": 10,
-    "Equipment": "sword|shield|potion",
+    "Equipment": ["sword","dagger","poison"],
     "Gold": 50
   },
   {

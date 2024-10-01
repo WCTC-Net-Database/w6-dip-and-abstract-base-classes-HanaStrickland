@@ -9,11 +9,14 @@ namespace W6_assignment_template.Services
         private readonly Player _player;
         private readonly Goblin _goblin;
 
+        private readonly Ghost _ghost;
+
         public GameEngine(IContext context)
         {
             _context = context;
             _player = context.Characters.OfType<Player>().FirstOrDefault();
             _goblin = _context.Characters.OfType<Goblin>().FirstOrDefault();
+            _ghost = _context.Characters.OfType<Ghost>().FirstOrDefault();
         }
 
         public void Run()
@@ -28,20 +31,19 @@ namespace W6_assignment_template.Services
 
             _goblin.Move();
             _goblin.Attack(_player);
+            _player.TakeHits(_goblin);
 
             _player.Move();
             _player.Attack(_goblin);
+            _goblin.TakeHits(_player);
+            _ghost.ExecuteFlyGhostCommand();
+            _player.Attack(_ghost);
+            _ghost.TakeHits(_player);
 
             Console.WriteLine($"Player Gold: {_player.Gold}");
-
-            // Example CRUD operations for Goblin
-            //var newGoblin = new Goblin("New Goblin", "Goblin", 1, 30, "None");
-            //_context.AddCharacter(newGoblin);
-
-            //newGoblin.Level = 2;
-            //_context.UpdateCharacter(newGoblin);
-
-            //_context.DeleteCharacter("New Goblin");
+            _context.UpdateCharacter(_player);
+            _context.UpdateCharacter(_goblin);
+            _context.UpdateCharacter(_ghost);
         }
     }
 }
