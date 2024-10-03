@@ -29,7 +29,7 @@ namespace W6_assignment_template.Models
             {
                 Console.WriteLine($"{Name} takes {targetWithTreasure.Treasure} from {target.Name}");
                 player.Equipment.Add(targetWithTreasure.Treasure);
-                player.Gold += 75; // Assuming each treasure is worth 10 gold
+                player.Gold += 10; // Assuming each treasure is worth 10 gold
                 targetWithTreasure.Treasure = null; // Treasure is taken
             }
             else if (this is Player playerWithGold && target is Player targetWithGold && targetWithGold.Gold > 0)
