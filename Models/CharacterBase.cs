@@ -28,6 +28,7 @@ namespace W6_assignment_template.Models
             if (this is Player player && target is ILootable targetWithTreasure && !string.IsNullOrEmpty(targetWithTreasure.Treasure))
             {
                 Console.WriteLine($"{Name} takes {targetWithTreasure.Treasure} from {target.Name}");
+                player.Equipment.Add(targetWithTreasure.Treasure);
                 player.Gold += 10; // Assuming each treasure is worth 10 gold
                 targetWithTreasure.Treasure = null; // Treasure is taken
             }
@@ -44,7 +45,6 @@ namespace W6_assignment_template.Models
             Console.WriteLine($"{Name} moves.");
         }
 
-        // Abstract method for unique behavior to be implemented by derived classes
-        public abstract void UniqueBehavior();
+        public abstract void TakeHits(ICharacter attacker);
     }
 }
